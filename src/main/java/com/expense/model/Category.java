@@ -68,8 +68,8 @@ public class Category {
         this.updated_at = updated_at;
     }
 
-    //@Override
-    //public String toString() {
-    //    return name; // For combo box display
-    //}
+    @Override
+    public String toString() {
+        return name; // For combo box display
+    }
 }
