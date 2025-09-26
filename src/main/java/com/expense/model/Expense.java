@@ -9,7 +9,7 @@ public class Expense {
     private String description;
     private BigDecimal amount;
     private int categoryId;
-    private String categoryName; // i may use it for display purposes i think
+    private String categoryName;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
@@ -100,4 +100,6 @@ public class Expense {
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
+
+    
 }

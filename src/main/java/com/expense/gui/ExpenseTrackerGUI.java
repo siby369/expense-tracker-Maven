@@ -91,10 +91,17 @@ public class ExpenseTrackerGUI extends JFrame {
         expenseDescriptionArea.setLineWrap(true);
         expenseDescriptionArea.setWrapStyleWord(true);
         expenseAmountField = new JTextField(20);
-        categoryComboBox = new JComboBox<>();
-        categoryComboBox.setRenderer(new DefaultListCellRenderer());
 
-        // Exp buttons
+        categoryComboBox = new JComboBox<>();
+        try {
+            List<Category> categories = dao.getAllCategories();
+            for (Category category : categories) {
+                categoryComboBox.addItem(category);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading categories: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
         addExpenseButton = new JButton("Add Expense");
         updateExpenseButton = new JButton("Update Expense");
         deleteExpenseButton = new JButton("Delete Expense");
@@ -106,11 +113,11 @@ public class ExpenseTrackerGUI extends JFrame {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // Categories tab
+        // Cat tab
         JPanel categoriesPanel = createCategoriesPanel();
         tabbedPane.addTab("Categories", categoriesPanel);
 
-        // Expenses tab
+        // Exp tab
         JPanel expensesPanel = createExpensesPanel();
         tabbedPane.addTab("Expenses", expensesPanel);
 
