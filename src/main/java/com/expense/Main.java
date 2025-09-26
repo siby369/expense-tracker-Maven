@@ -12,26 +12,28 @@ import com.expense.util.DatabaseConnection;
 
 public class Main {
     public static void main(String[] args) {
-        try {
+        try{
             Connection cn = DatabaseConnection.getDBConnection();
-            System.out.println("Database connected");
+            System.out.println("Database connection has been established");
             cn.close();
-        } catch (SQLException e) {
-            System.out.println("Database connection has failed: " + e.getMessage());
-            System.out.println("Please ensure MySQL is running and database 'expense_tracker' exists");
+        }
+        catch(SQLException e){
+            System.out.println("Database connection has failed");
         }
 
-        try {
+        try{
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            System.err.println("Failed to set Look and Feel: " + e.getMessage());
+        }
+        catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e){
+            System.err.println("Failed to set Look and Feel"+e.getMessage());
         }
 
         SwingUtilities.invokeLater(() -> {
-            try {
+            try{
                 new ExpenseTrackerGUI().setVisible(true);
-            } catch (Exception e) {
-                System.err.println("Failed to open the GUI: " + e.getMessage());
+            }
+            catch(Exception e){
+                System.err.println("Failed to open the GUI"+e.getMessage());
             }
         });
     }

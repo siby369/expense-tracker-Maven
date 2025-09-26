@@ -14,8 +14,7 @@ import java.math.BigDecimal;
 public class ExpenseTrackerGUI extends JFrame {
 
     private ExpenseTrackerDAO dao;
-    
-    // Category components
+
     private JTable categoryTable;
     private DefaultTableModel categoryTableModel;
     private JTextField categoryNameField;
@@ -25,7 +24,6 @@ public class ExpenseTrackerGUI extends JFrame {
     private JButton deleteCategoryButton;
     private JButton refreshCategoriesButton;
 
-    // Expense components
     private JTable expenseTable;
     private DefaultTableModel expenseTableModel;
     private JTextField expenseTitleField;
@@ -53,7 +51,7 @@ public class ExpenseTrackerGUI extends JFrame {
         setSize(1000, 700);
         setLocationRelativeTo(null);
 
-        // Category table
+        // Cat table
         String[] categoryColumnNames = {"ID", "Name", "Description", "Created At", "Updated At"};
         categoryTableModel = new DefaultTableModel(categoryColumnNames, 0) {
             @Override
@@ -64,19 +62,19 @@ public class ExpenseTrackerGUI extends JFrame {
         categoryTable = new JTable(categoryTableModel);
         categoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Category input fields
+        // Cat input fields
         categoryNameField = new JTextField(20);
         categoryDescriptionArea = new JTextArea(3, 20);
         categoryDescriptionArea.setLineWrap(true);
         categoryDescriptionArea.setWrapStyleWord(true);
 
-        // Category buttons
+        // Cat buttons
         addCategoryButton = new JButton("Add Category");
         updateCategoryButton = new JButton("Update Category");
         deleteCategoryButton = new JButton("Delete Category");
         refreshCategoriesButton = new JButton("Refresh");
 
-        // Expense table
+        // Exp table
         String[] expenseColumnNames = {"ID", "Title", "Description", "Amount", "Category", "Created At", "Updated At"};
         expenseTableModel = new DefaultTableModel(expenseColumnNames, 0) {
             @Override
@@ -94,18 +92,9 @@ public class ExpenseTrackerGUI extends JFrame {
         expenseDescriptionArea.setWrapStyleWord(true);
         expenseAmountField = new JTextField(20);
         categoryComboBox = new JComboBox<>();
-        categoryComboBox.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof Category) {
-                    setText(((Category) value).getName());
-                }
-                return this;
-            }
-        });
+        categoryComboBox.setRenderer(new DefaultListCellRenderer());
 
-        // Expense buttons
+        // Exp buttons
         addExpenseButton = new JButton("Add Expense");
         updateExpenseButton = new JButton("Update Expense");
         deleteExpenseButton = new JButton("Delete Expense");
